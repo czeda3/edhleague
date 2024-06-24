@@ -11,5 +11,23 @@
     <h1>SZIA</h1>
     <h1>TESZT</h1>
     <button>BUTTON</button>
+    <php>
+        $servername = "localhost";
+        $username = "nnvrbxyv_dbadmin";
+        $pw = "aQcluj6(^O(3";
+        $dbname = "nnvrbxyv_donblackeDB";
+    
+        $conn = mysqli_connect($servername, $username, $pw, $dbname);
+
+        if ($conn){
+            echo "<h1>We are connected to the db</h1>";
+        } else {
+            echo "<h1>We are NOT connected to the db</h1>";
+        }
+    </php>
+    <?php
+        echo "My first PHP script!";
+    ?> 
+    
 </body>
 </html>
