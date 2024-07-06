@@ -8,7 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
 </head>
-<body>
+<body class="bg-secondary">
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
         <div class="container">
@@ -47,7 +47,7 @@
     <div class="container">SPACING</div>
     <div class="container my-5">
         <nav>
-            <div class="nav nav-tabs my-2" id="nav-tab" role="tablist">
+            <div class="nav nav-tabs text-secondary my-2" id="nav-tab" role="tablist">
                 <button
                     class="nav-link active fw-bold" id="league-26-tab"
                     data-bs-toggle="tab" data-bs-target="#league-26"
@@ -68,9 +68,72 @@
                     24. Liga</button>
             </div>
         </nav>
+            <!-- League Tabs Content -->
             <div class="tab-content" id="nav-tabContent">
-            <div class="tab-pane fade show active" id="league-26" role="tabpanel" aria-labelledby="league-26-tab" tabindex="0">Content for 26. liga</div>
-            <div class="tab-pane fade" id="league-25" role="tabpanel" aria-labelledby="league-25-tab" tabindex="0">Content for 25. liga</div>
+            <div class="tab-pane fade show active" id="league-26" role="tabpanel" aria-labelledby="league-26-tab" tabindex="0">
+                <table class="table table-dark table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Név</th>
+                        <th scope="col">Pont</th>
+                        <th scope="col">Commander</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>17</td>
+                        <td>Aragorn, King of Gondor</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>15</td>
+                        <td>Tameshi, Reality Architect</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Larry the Bird</td>
+                        <td>8</td>
+                        <td>Minsc, Beloved Ranger</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-pane fade" id="league-25" role="tabpanel" aria-labelledby="league-25-tab" tabindex="0">
+                <table class="table table-dark table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Név</th>
+                        <th scope="col">Commander</th>
+                        <th scope="col">Pont</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Aragorn, King of Gondor</td>
+                        <td>17</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Tameshi, Reality Architect</td>
+                        <td>15</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Larry the Bird</td>
+                        <td>Minsc, Beloved Ranger</td>
+                        <td>9</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
             <div class="tab-pane fade" id="league-24" role="tabpanel" aria-labelledby="league-24-tab" tabindex="0">Content for 24. liga</div>
         </div>
     </div>
