@@ -1,4 +1,3 @@
-<!-- PHP --> 
 <?php
 $hostname = "localhost"; //localhost
 $dbname = "nnvrbxyv_donblackeDB";
@@ -11,9 +10,8 @@ if (!$conn) {
     die("Connection failed". mysqli_connect_error());
 }
 
-// Creates the query string, that is used for returning values for a specific league
-// $leagueNumber - number of the league to query data from the matches table
-function getLeagueQueryStrring($leagueNumber) {
+
+function getSingleLeagueQueryString($leagueNumber) {
     $sql = "
     SELECT
         CONCAT(u.last_name, ' ', u.first_name) AS full_name,
@@ -42,7 +40,8 @@ function getLeagueQueryStrring($leagueNumber) {
     LEFT JOIN
         league_data ld ON u.id = ld.player
     WHERE
-        ld.league = "+ $leagueNumber + "
+        ld.league = ".strval($leagueNumber)." AND
+        m.league_id = ".strval($leagueNumber)."
     GROUP BY 
         u.id, u.first_name, u.last_name, ld.commander
     ORDER BY 
@@ -52,11 +51,19 @@ function getLeagueQueryStrring($leagueNumber) {
 }
 
 
-$result = $conn->query($leagueStandingsSQL);
+$leagueSQL = "SELECT id FROM `leagues` ORDER BY id DESC;";
+$leagueSQLresult = $conn->query($leagueSQL);
+
+$allLeagueStandingsArray = array();
+
+while($row = $leagueSQLresult->fetch_assoc()) {                    
+    $query = $conn->query(getSingleLeagueQueryString($row["id"]));
+    $allLeagueStandingsArray[$row["id"]] = $query;
+}
+
 $conn->close();
 ?>
 
-<!-- HTML --> 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -88,7 +95,7 @@ $conn->close();
                         <a class="nav-link" href="./index.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" href="./leagues.html">Ligák</a>
+                        <a class="nav-link text-light" href="./leagues.php">Ligák</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Szabályok</a>
@@ -107,48 +114,59 @@ $conn->close();
     <div class="container my-5">
         <nav>
             <div class="nav nav-tabs text-secondary my-2" id="nav-tab" role="tablist">
-                <button
-                    class="nav-link fw-bold" id="league-25-tab"
-                    data-bs-toggle="tab" data-bs-target="#league-25"
-                    type="button" role="tab"
-                    aria-controls="league-25" aria-selected="false">
-                    25. Liga</button>
-                <button
-                    class="nav-link fw-bold" id="league-24-tab"
-                    data-bs-toggle="tab" data-bs-target="#league-24"
-                    type="button" role="tab"
-                    aria-controls="league-24" aria-selected="false">
-                    24. Liga</button>
+                <?php
+                //Generate every tab
+                $leagueSQLresult->data_seek(0);
+                while($row = $leagueSQLresult->fetch_assoc()) {                    
+                    echo "
+                        <button
+                        class=\"nav-link fw-bold\" id=\"league-".$row["id"]."-tab\"
+                        data-bs-toggle=\"tab\" data-bs-target=\"#league-".$row["id"]."\"
+                        type=\"button\" role=\"tab\"
+                        aria-controls=\"league-".$row["id"]."\" aria-selected=\"false\">
+                        ".$row["id"].". Liga
+                        </button>
+                    ";    
+                }
+                ?>
             </div>
         </nav>
             <!-- League Tabs Content -->
             <div class="tab-content" id="nav-tabContent">
-            <div class="tab-pane fade" id="league-25" role="tabpanel" aria-labelledby="league-25-tab" tabindex="0">
-                <table class="table table-dark table-striped">
-                    <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Név</th>
-                        <th scope="col">Commander</th>
-                        <th scope="col">Pont</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php
+
+            <?php
+            $leagueSQLresult->data_seek(0);
+            while($tabRow = $leagueSQLresult->fetch_assoc()) {
+                echo "<div class=\"tab-pane fade\" id=\"league-".$tabRow["id"]."\" role=\"tabpanel\" aria-labelledby=\"league-".$row["id"]."-tab\" tabindex=\"0\">";
+            ?>
+                    <table class="table table-dark table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Név</th>
+                            <th scope="col">Commander</th>
+                            <th scope="col">Pont</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php
                         $row_number = 1;
-                        while($row = $result->fetch_assoc()) {
+                        while($standingsRow = $allLeagueStandingsArray[$tabRow["id"]]->fetch_assoc()) {
                             echo "<tr>                    
                                     <th scope=\"row\">".$row_number."</th>
-                                    <td>".$row["full_name"]."</td>
-                                    <td>".$row["commander"]."</td>
-                                    <td>".$row["points"]."</td>
+                                    <td>".$standingsRow["full_name"]."</td>
+                                    <td>".$standingsRow["commander"]."</td>
+                                    <td>".$standingsRow["points"]."</td>
                                 </tr>";
                             $row_number++;
                         }
-                    ?>
-                    </tbody>
-                </table>
-            </div>
+                        ?>
+                        </tbody>
+                    </table>
+                </div>
+            <?php
+            }
+            ?>
         </div>
     </div>
 

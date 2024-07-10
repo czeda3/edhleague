@@ -29,7 +29,7 @@
                         <a class="nav-link text-light" href="./index.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./leagues.html">Ligák</a>
+                        <a class="nav-link" href="./leagues.php">Ligák</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Szabályok</a>
@@ -41,6 +41,60 @@
             </div>
         </div>
     </nav>
+
+    <!-- Whatever -->
+    <div class="container">SPACING</div>
+    <div class="container my-5">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reportMatchModal">
+            Report match
+        </button>
+        
+        <!-- Modal -->
+        <div class="modal fade" id="reportMatchModal" tabindex="-1" aria-labelledby="reportMatchModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="reportMatchModalLabel">Report league match</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid justify-content-end">
+                        <div class="row">
+                            <div class="col-3 ms-auto fw-bold">First Player</div>
+                            <div class="col-2 ms-auto">
+                                <select class="form-select-lg" aria-label="Score select for first player">
+                                    <option value="0" selected>0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                </select>
+                            </div>
+                            <div class="col-2 ms-auto fw-bold">vs.</div>
+                            <div class="col-2 ms-auto">
+                                <select class="form-select-lg" aria-label="Score select for first player">
+                                    <option value="0" selected>0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                </select>
+                            </div>
+                            <div class="col-3 ms-auto fw-bold">Second Player</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    
+
+
 
 </body>
 </html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top 8 Tournament Bracket</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .bracket {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .round {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .round1-left, .round1-right, .round2-left, .round2-right {
+            margin: 0 20px;
+        }
+        .round.final {
+            margin: 0 40px;
+        }
+        .matchup {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            position: relative;
+        }
+        .matchup::before, .matchup::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 1px;
+            background-color: #ccc;
+        }
+        .matchup::before {
+            top: 50%;
+            right: 100%;
+            transform: translateY(-50%);
+        }
+        .matchup::after {
+            top: 50%;
+            left: 100%;
+            transform: translateY(-50%);
+        }
+        .round2-left .matchup::before, .round2-right .matchup::before,
+        .round.final .matchup::after {
+            display: none;
+        }
+        .team {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 200px;
+            margin: 5px 0;
+            padding: 5px;
+            border-radius: 5px;
+        }
+        .team.winner {
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+        .team.loser {
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+        .score {
+            margin-left: 10px;
+        }
+        .connector {
+            height: 20px;
+            border-left: 1px solid #ccc;
+            border-bottom: 1px solid #ccc;
+            width: 20px;
+        }
+        .connector-bottom {
+            border-top: 1px solid #ccc;
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="bracket">
+        <div class="round round1-left">
+            <div class="matchup">
+                <div class="team winner">
+                    <span>Team 1</span>
+                    <span class="score">3</span>
+                </div>
+                <div class="team loser">
+                    <span>Team 8</span>
+                    <span class="score">0</span>
+                </div>
+            </div>
+            <div class="matchup">
+                <div class="team winner">
+                    <span>Team 4</span>
+                    <span class="score">2</span>
+                </div>
+                <div class="team loser">
+                    <span>Team 5</span>
+                    <span class="score">1</span>
+                </div>
+            </div>
+        </div>
+        <div class="round round2-left">
+            <div class="matchup">
+                <div class="team winner">
+                    <span>Team 1</span>
+                    <span class="score">3</span>
+                </div>
+                <div class="team loser">
+                    <span>Team 4</span>
+                    <span class="score">1</span>
+                </div>
+            </div>
+        </div>
+        <div class="round final">
+            <div class="matchup">
+                <div class="team winner">
+                    <span>Team 1</span>
+                    <span class="score">3</span>
+                </div>
+                <div class="team loser">
+                    <span>Team 2</span>
+                    <span class="score">2</span>
+                </div>
+            </div>
+        </div>
+        <div class="round round2-right">
+            <div class="matchup">
+                <div class="team loser">
+                    <span>Team 6</span>
+                    <span class="score">2</span>
+                </div>
+                <div class="team winner">
+                    <span>Team 2</span>
+                    <span class="score">3</span>
+                </div>
+            </div>
+        </div>
+        <div class="round round1-right">
+            <div class="matchup">
+                <div class="team loser">
+                    <span>Team 3</span>
+                    <span class="score">1</span>
+                </div>
+                <div class="team winner">
+                    <span>Team 6</span>
+                    <span class="score">3</span>
+                </div>
+            </div>
+            <div class="matchup">
+                <div class="team winner">
+                    <span>Team 2</span>
+                    <span class="score">3</span>
+                </div>
+                <div class="team loser">
+                    <span>Team 7</span>
+                    <span class="score">0</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
